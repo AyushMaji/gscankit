@@ -1,4 +1,4 @@
-# Gscanner_kit
+# GScanKit
 
 GScanKit is a powerful and lightweight Flutter plugin to scan QR codes and barcodes using the device's camera or gallery. Designed for developers who want a clean, fast, and reliable scanning experience in their apps, inspired by Google’s minimal UI standards.
 
@@ -16,4 +16,4 @@ Add this to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  gscankit: ^0.0.1
+  gscankit: ^0.0.2
