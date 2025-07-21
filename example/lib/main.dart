@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gscankit/gscankit.dart';
 
@@ -31,10 +32,9 @@ class _MyHomePageState extends State<MyHomePage> {
   MobileScannerController controller = MobileScannerController(
     returnImage: true,
   );
-  bool isTorchOn = false;
+
   @override
   void initState() {
-    isTorchOn = controller.value.torchState == TorchState.on;
     super.initState();
   }
 
@@ -42,61 +42,233 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: Text("Gscan kit"),
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => GscanKit(
-                      controller: controller,
-                      // appBar: (p0, p1) {
-                      //   return AppBar(backgroundColor: Colors.transparent);
-                      // },
-                      onDetect: (BarcodeCapture capture) {},
-                      // bottomSheetBuilder: (context, controller) {
-                      //   return Container(height: 90, color: Colors.amber);
-                      // },
-                      // floatingOption: [
-                      //   IconButton.filled(
-                      //     style: IconButton.styleFrom(
-                      //       backgroundColor: CupertinoColors.systemGrey6,
-                      //       foregroundColor: CupertinoColors.darkBackgroundGray,
-                      //     ),
-                      //     icon: Icon(CupertinoIcons.camera_rotate),
-                      //     onPressed: () => controller.switchCamera(),
-                      //   ),
-                      //   IconButton.filled(
-                      //     style: IconButton.styleFrom(
-                      //       backgroundColor: isTorchOn
-                      //           ? CupertinoColors.activeOrange
-                      //           : CupertinoColors.systemGrey6,
-                      //       foregroundColor: CupertinoColors.darkBackgroundGray,
-                      //     ),
-                      //     icon: Icon(
-                      //       isTorchOn
-                      //           ? CupertinoIcons.light_max
-                      //           : CupertinoIcons.light_min,
-                      //     ),
-                      //     onPressed: () {
-                      //       controller.toggleTorch();
-                      //       setState(() {});
-                      //     },
-                      //   ),
-                      // ],
+            SizedBox(height: 40),
+            SizedBox(
+              width: double.infinity,
+              height: 60,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => GscanKit(
+                        controller: controller,
+                        onDetect: (BarcodeCapture capture) {},
+                      ),
                     ),
-                  ),
-                );
-              },
-              child: const Text('Open Scanner'),
+                  );
+                },
+                child: const Text('Default Scanner'),
+              ),
+            ),
+            SizedBox(height: 20),
+            SizedBox(
+              width: double.infinity,
+              height: 60,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => GscanKit(
+                        controller: controller,
+                        onDetect: (BarcodeCapture capture) {},
+                        gscanOverlayConfig: GscanOverlayConfig(
+                          scannerScanArea: ScannerScanArea.full,
+                        ),
+                        floatingOption: [
+                          ValueListenableBuilder(
+                            valueListenable: controller,
+                            builder: (context, state, child) {
+                              final isTorchOn =
+                                  state.torchState == TorchState.on;
+                              return TorchToggleButton(
+                                isTorchOn: isTorchOn,
+                                onPressed: () => controller.toggleTorch(),
+                              );
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+                child: const Text('Full Page Scanner'),
+              ),
+            ),
+            SizedBox(height: 20),
+            SizedBox(
+              width: double.infinity,
+              height: 60,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => GscanKit(
+                        controller: controller,
+                        onDetect: (BarcodeCapture capture) {},
+                        floatingOption: [
+                          IconButton.filled(
+                            style: IconButton.styleFrom(
+                              backgroundColor: CupertinoColors.systemGrey6,
+                              foregroundColor:
+                                  CupertinoColors.darkBackgroundGray,
+                            ),
+                            icon: Icon(CupertinoIcons.camera_rotate),
+                            onPressed: () => controller.switchCamera(),
+                          ),
+                          ValueListenableBuilder(
+                            valueListenable: controller,
+                            builder: (context, state, child) {
+                              final isTorchOn =
+                                  state.torchState == TorchState.on;
+                              return TorchToggleButton(
+                                isTorchOn: isTorchOn,
+                                onPressed: () => controller.toggleTorch(),
+                              );
+                            },
+                          ),
+                          GalleryButton(
+                            controller: controller,
+                            icon: Icon(CupertinoIcons.photo, size: 18),
+                            isSuccess: ValueNotifier<bool?>(null),
+                          ),
+                        ],
+                        gscanOverlayConfig: GscanOverlayConfig(
+                          scannerOverlayBackground:
+                              ScannerOverlayBackground.none,
+                          scannerLineAnimation: ScannerLineAnimation.none,
+                        ),
+                      ),
+                    ),
+                  );
+                },
+                child: const Text('Scanner with '),
+              ),
+            ),
+            SizedBox(height: 20),
+            SizedBox(
+              width: double.infinity,
+              height: 60,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => GscanKit(
+                        appBar: (context, controller) {
+                          return AppBar(
+                            title: Text("Gscan"),
+                            leading: Icon(Icons.arrow_back_ios),
+                            backgroundColor: Colors.transparent,
+                            actions: [
+                              IconButton.filled(
+                                style: IconButton.styleFrom(
+                                  backgroundColor: CupertinoColors.systemGrey6,
+                                  foregroundColor:
+                                      CupertinoColors.darkBackgroundGray,
+                                ),
+                                icon: Icon(CupertinoIcons.camera_rotate),
+                                onPressed: () => controller.switchCamera(),
+                              ),
+                              ValueListenableBuilder(
+                                valueListenable: controller,
+                                builder: (context, state, child) {
+                                  final isTorchOn =
+                                      state.torchState == TorchState.on;
+                                  return TorchToggleButton(
+                                    isTorchOn: isTorchOn,
+                                    onPressed: () => controller.toggleTorch(),
+                                  );
+                                },
+                              ),
+                              SizedBox(width: 10),
+                            ],
+                          );
+                        },
+                        controller: controller,
+                        onDetect: (BarcodeCapture capture) {},
+                        floatingOption: [
+                          GalleryButton(
+                            controller: controller,
+                            isSuccess: ValueNotifier<bool?>(null),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors
+                                    .grey
+                                    .shade200, // Change to your preferred color
+                                borderRadius: BorderRadius.circular(
+                                  30,
+                                ), // Makes it rounded
+                              ),
+                              width: 120,
+                              padding: EdgeInsets.symmetric(
+                                vertical: 10,
+                                horizontal: 10,
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(CupertinoIcons.photo, size: 20),
+                                  SizedBox(width: 8),
+                                  Text(
+                                    "Upload",
+                                    style: TextStyle(fontSize: 14),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                        gscanOverlayConfig: GscanOverlayConfig(
+                          scannerOverlayBackground:
+                              ScannerOverlayBackground.blur,
+                          scannerBorderPulseEffect:
+                              ScannerBorderPulseEffect.none,
+                        ),
+                      ),
+                    ),
+                  );
+                },
+                child: const Text('Scanner with Appbar'),
+              ),
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+/// A reusable torch toggle button using a custom asset icon.
+class TorchToggleButton extends StatelessWidget {
+  final bool isTorchOn;
+  final VoidCallback onPressed;
+  const TorchToggleButton({
+    super.key,
+    required this.isTorchOn,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton.filled(
+      style: IconButton.styleFrom(
+        backgroundColor: isTorchOn ? Colors.black : Colors.white,
+        foregroundColor: isTorchOn ? Colors.white : Colors.black,
+      ),
+      icon: Image.asset(
+        'assets/torch.png',
+        width: 40,
+        height: 40,
+        color: isTorchOn ? Colors.white : Colors.black,
+      ),
+      onPressed: onPressed,
     );
   }
 }

@@ -17,8 +17,8 @@ class GalleryButton extends StatelessWidget {
   final MobileScannerController controller;
   final ValueNotifier<bool?> isSuccess;
   final String text;
-  final IconData? icon;
-  final Widget child;
+  final Icon? icon;
+  final Widget? child;
 
   const GalleryButton({
     super.key,
@@ -29,7 +29,7 @@ class GalleryButton extends StatelessWidget {
     required this.isSuccess,
     this.text = 'Upload from gallery',
     this.icon,
-    required this.child,
+    this.child,
   });
 
   /// REFACTORED: The logic for picking and analyzing the image is now cleaner.
@@ -65,6 +65,15 @@ class GalleryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(onTap: _pickAndAnalyzeImage, child: child);
+    return child != null
+        ? GestureDetector(onTap: _pickAndAnalyzeImage, child: child)
+        : IconButton.filled(
+            style: IconButton.styleFrom(
+              backgroundColor: CupertinoColors.systemGrey6,
+              foregroundColor: CupertinoColors.darkBackgroundGray,
+            ),
+            icon: icon ?? Icon(CupertinoIcons.photo),
+            onPressed: _pickAndAnalyzeImage,
+          );
   }
 }
