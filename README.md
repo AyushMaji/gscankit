@@ -212,9 +212,7 @@ GalleryButton(
 ),
 ```
 
----
-
-## 🛠 Under the Hood
+## 🛠 Dependencies
 
 This package is a polished wrapper over [`mobile_scanner`](https://pub.dev/packages/mobile_scanner). It simplifies usage and adds visual polish.
 
@@ -225,17 +223,6 @@ For deep control or if you're troubleshooting:
 - Configure advanced platform-specific behaviors
 
 See the [mobile_scanner docs](https://pub.dev/packages/mobile_scanner) for more details.
-
----
-
-## 🧩 Dependencies
-
-This package uses:
-
-- `mobile_scanner` for barcode recognition
-- `permission_handler` for requesting runtime permissions (optional if handled manually)
-
----
 
 ## 🆘 Troubleshooting
 
@@ -250,7 +237,7 @@ This package uses:
 MIT License. See [LICENSE](LICENSE) for details.
 
 <br />
-<code><img height="50" src="https://raw.githubusercontent.com/AyushMaji/amicons/refs/heads/main/assets/others/flaticon.png"></code>
+<code><img height="50" src="https://github.com/AyushMaji/gscankit/blob/main/assets/logo.png?raw=true"></code>
 <br /><br />
 <br />
 
