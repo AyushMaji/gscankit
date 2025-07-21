@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gscankit/gscankit.dart';
+import 'package:gscankit/gscanner_kit.dart';
 
 void main() {
   runApp(const MyApp());
