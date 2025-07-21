@@ -10,15 +10,16 @@ Includes full-screen scanner, animated scan line, and seamless integration — a
 
 ## Features
 
-- **Full-Screen Scanner:** Seamless `full-screen live camera` with ultra-fast barcode & QR code detection.
-- **AI-Powered Accuracy:** Fast and smart barcode & QR detection using `ML-backed` technology.
-- **Multi-Code Support:** Detects and processes multiple barcodes and QR codes at once.
-- **Apple-Style Animations:** Pulse border and scanning line `animation` inspired by `Apple’s scanner UX`.
-- **Custom Overlay UI:** Complete control over scanner UI – colors, shapes, borders, blur, size, and style.
-- **Flash & Camera Toggle:** Built-in flashlight toggle and instant `front/back camera` switching.
-- **Gallery Image Scan:** Instantly scan barcodes and QR codes from user-selected `gallery images`.
-- **Overlay Component Control:** Customize `app bar`, `floating bar`, `bottom sheets`, and more.
-- **Developer-Friendly API:** Clean architecture, flexible callbacks, and easy Flutter integration.
+- **Full-Screen Scanner:** Seamless `full-screen live camera` with ultra-fast barcode & QR code detection.  
+- **AI-Powered Accuracy:** Fast and smart barcode & QR detection using `ML-backed` technology.  
+- **Multi-Code Support:** Detects and processes multiple barcodes and QR codes at once.  
+- **Apple-Style Animations:** Pulse border and scanning line `animation` inspired by `Apple’s scanner UX`.  
+- **Custom Overlay UI:** Complete control over scanner UI – colors, shapes, borders, blur, size, and style.  
+- **Flash & Camera Toggle:** Built-in flashlight toggle and instant `front/back camera` switching.  
+- **Gallery Image Scan:** Instantly scan barcodes and QR codes from user-selected `gallery images`.  
+- **Auto Zoom:** Smart auto-zoom for enhanced barcode focus and readability.  
+- **Overlay Component Control:** Customize `app bar`, `floating bar`, `bottom sheets`, and more.  
+- **Developer-Friendly API:** Clean architecture, flexible callbacks, and easy Flutter integration.  
 
 <br/>
 <br/>
@@ -204,7 +205,7 @@ Customize the visual appearance of the scanner overlay to match your brand or de
 
 ---
 
-### Gallery Button Options
+### 🖼️  Gallery Button Options
 Use the built-in `GalleryButton` to allow users to scan barcodes from gallery images.  
 You can place this widget in your UI freely — AppBar, BottomSheet, or FloatingActionButton — and customize it using the `icon` or `child` parameter as per your design.
 
@@ -234,7 +235,7 @@ GalleryButton(
 
 > ✅ `GalleryButton` is fully customizable. Use `child` if you want to provide your own styled widget instead of the default `icon`.
 
-### Switch Camera Example
+### 🔁 Switch Camera Example
 
 You can use the `MobileScannerController` to control camera behavior like switching between front and back cameras.  
 Place the toggle icon anywhere in your UI — AppBar, FloatingActionButton, BottomSheet, etc., based on your design needs.
@@ -257,7 +258,7 @@ IconButton.filled(
 
 >Using `controller.switchCamera()` toggles between front and back cameras. This is helpful for scanning QR codes from selfies or switching based on user preference.
 
-### Torch Toggle Button Integration
+### 🔦 Torch Toggle Button Integration
 
 Use `TorchToggleButton` with `ValueListenableBuilder` to reactively handle flashlight on/off state.  
 You can place this widget anywhere: in the AppBar, BottomSheet, or as a FloatingActionButton.
@@ -278,6 +279,8 @@ ValueListenableBuilder(
 > 💡 `TorchToggleButton` is a customizable widget that changes appearance based on the current torch state.  
 > You can also replace it with your own widget and logic if needed.
 
+---
+
 ## 🛠 Dependencies
 
 This package is a polished wrapper over [`mobile_scanner`](https://pub.dev/packages/mobile_scanner). It simplifies usage and adds visual polish.
@@ -295,8 +298,6 @@ See the [mobile_scanner docs](https://pub.dev/packages/mobile_scanner) for more 
 - **Black Screen / Scanner not opening**: Ensure permissions are granted and declared correctly.
 - **Wrong detection**: Ensure good lighting, stable hands, and close distance.
 - **iOS Pod Issues**: Try `flutter clean`, delete `Podfile.lock`, and run `pod install --repo-update`.
-
----
 
 ## 📄 License
 
