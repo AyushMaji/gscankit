@@ -141,9 +141,14 @@ class _MyHomePageState extends State<MyHomePage> {
                           ),
                         ],
                         gscanOverlayConfig: GscanOverlayConfig(
-                          scannerOverlayBackground:
-                              ScannerOverlayBackground.none,
-                          scannerLineAnimation: ScannerLineAnimation.none,
+                          scannerScanArea: ScannerScanArea.center,
+                          scannerBorder:ScannerBorder.visible ,
+                          scannerBorderPulseEffect: ScannerBorderPulseEffect.enabled,
+                          borderColor: Colors.white,
+                          borderRadius: 24.0,
+                          scannerLineAnimationColor: Colors.green,
+                          scannerOverlayBackground: ScannerOverlayBackground.blur,
+                          scannerLineAnimation: ScannerLineAnimation.enabled,
                         ),
                       ),
                     ),
