@@ -52,9 +52,7 @@ Includes full-screen scanner, animated scan line, and seamless integration — a
 
 <br />
 
----
-
-## 🚀 Installation
+## Installation
 
 Add the following to your `pubspec.yaml`:
 
@@ -68,8 +66,6 @@ Then run:
 ```bash
 flutter pub get
 ```
-
----
 
 ## Platform Setup
 
@@ -102,7 +98,9 @@ For Android 13+, consider using `READ_MEDIA_IMAGES` instead of `READ_EXTERNAL_ST
 
 ---
 
-## 🧪 Basic Usage
+## Basic Usage
+Launch the default GscanKit scanner with minimal setup.  
+Use the `onDetect` callback to handle scanned barcode results.
 
 ```dart
 import 'package:gscankit/gscankit.dart';
@@ -122,10 +120,12 @@ ElevatedButton(
   },
   child: const Text('Default Scanner'),
 );
-
 ```
----
 ## ✅ GScanKit Configuration Options
+Customize the behavior and appearance of the scanner using various configuration parameters.  
+You can pass these options to the `GscanKit` widget to tailor it for your app's needs.
+
+
 | Parameter                  | Type                        | Description                                                                 |
 |---------------------------|-----------------------------|-----------------------------------------------------------------------------|
 | `controller`              | `MobileScannerController?`  | Optional. Use to access and control the scanner programmatically.           |
@@ -147,9 +147,11 @@ ElevatedButton(
 | `customOverlayBuilder`    | `Widget?`                   | Optional. Fully override default overlay UI.                                |
 | `onDispose`               | `void Function()?`          | Optional. Callback when scanner widget is disposed.                         |
 
----
 
-### 🪄  Overlay Styling
+## 🎨 Overlay Styling
+Customize the appearance and behavior of the scanner with flexible options.  
+You can tweak overlay styles, animation effects, scan border visibility, and more  
+to match your app's branding or UX needs. Below is a full list of configurable fields:
 
 ```dart
 GscanKit(
@@ -171,31 +173,32 @@ GscanKit(
 )
 
 ```
+## ✅ Overlay Styling Options
+Customize the visual appearance of the scanner overlay to match your brand or design preference.
 
-### ✅ Overlay Styling Configuration
+| Name                        | Type                       | Description & Default |
+|-----------------------------|----------------------------|------------------------|
+| `scannerScanArea`           | `ScannerScanArea`          | Area of scanner focus: full or center. Default: `ScannerScanArea.center` |
+| `scannerOverlayBackground`  | `ScannerOverlayBackground` | Background effect outside scan window. Default: `ScannerOverlayBackground.blur` |
+| `scannerOverlayBackgroundColor` | `Color`                | Tint color for overlay background. Default: `CupertinoColors.systemFill` |
+| `scannerBorder`             | `ScannerBorder`            | Controls whether scan border is visible. Default: `ScannerBorder.visible` |
+| `borderColor`               | `Color`                    | Color of the scan border.  Default: `CupertinoColors.white` |
+| `borderRadius`              | `double`                   | Border corner radius (entire box).  Default: `24.0` |
+| `cornerRadius`              | `double`                   | Radius of individual corners.  Default: `24.0` |
+| `cornerLength`              | `double`                   | Length of corner indicators.  Default: `60.0` |
+| `scannerBorderPulseEffect`  | `ScannerBorderPulseEffect` | Apple-style border pulse animation. Default: `ScannerBorderPulseEffect.enabled` |
+| `scannerLineAnimation`      | `ScannerLineAnimation`     | Enables the animated scanning line. Default: `ScannerLineAnimation.enabled` |
+| `scannerLineAnimationColor` | `Color`                    | Color of the scanning line. Default: `CupertinoColors.systemRed` |
+| `scannerLineanimationDuration` | `Duration`              | Speed of scanning line animation. Default: `Duration(milliseconds: 1500)` |
+| `lineThickness`             | `double`                   | Thickness of scanning line.  Default: `4.0` |
+| `curve`                     | `Cubic?`                   | Curve of the animation (optional).
+| `animation`                 | `Animation<double>?`       | Provide custom animation controller.
+| `background`                | `Widget?`                  | Optional custom background widget.
+| `successColor`              | `Color`                    | Border color on successful scan. Default: `CupertinoColors.systemGreen` |
+| `errorColor`                | `Color`                    | Border color on error scan. Default: `CupertinoColors.systemRed` |
+| `animateOnSuccess`          | `bool`                     | Whether to animate on successful scan. Default: `true` |
+| `animateOnError`            | `bool`                     | Whether to animate on failed scan. Default: `true` |
 
-| Name                          | Type                        | Default                                | Description |
-|-------------------------------|-----------------------------|----------------------------------------|-------------|
-| `scannerScanArea`             | `ScannerScanArea`           | `ScannerScanArea.center`              | Area of scanner focus: full or center. |
-| `scannerOverlayBackground`    | `ScannerOverlayBackground`  | `ScannerOverlayBackground.blur`       | Background effect outside scan window. |
-| `scannerOverlayBackgroundColor` | `Color`                  | `CupertinoColors.systemFill`          | Tint color for overlay background. |
-| `scannerBorder`               | `ScannerBorder`             | `ScannerBorder.visible`               | Controls whether scan border is visible. |
-| `borderColor`                 | `Color`                     | `CupertinoColors.white`               | Color of the scan border. |
-| `borderRadius`                | `double`                    | `24.0`                                 | Border corner radius (entire box). |
-| `cornerRadius`                | `double`                    | `24.0`                                 | Radius of individual corners. |
-| `cornerLength`                | `double`                    | `60.0`                                 | Length of corner indicators. |
-| `scannerBorderPulseEffect`    | `ScannerBorderPulseEffect`  | `ScannerBorderPulseEffect.enabled`    | Apple-style border pulse animation. |
-| `scannerLineAnimation`        | `ScannerLineAnimation`      | `ScannerLineAnimation.enabled`        | Enables the animated scanning line. |
-| `scannerLineAnimationColor`   | `Color`                     | `CupertinoColors.systemRed`           | Color of the scanning line. |
-| `scannerLineanimationDuration`| `Duration`                  | `Duration(milliseconds: 1500)`        | Speed of scanning line animation. |
-| `lineThickness`               | `double`                    | `4.0`                                  | Thickness of scanning line. |
-| `curve`                       | `Cubic?`                    | `null`                                 | Curve of the animation (optional). |
-| `animation`                   | `Animation<double>?`        | `null`                                 | Provide custom animation controller. |
-| `background`                  | `Widget?`                   | `null`                                 | Optional custom background widget. |
-| `successColor`                | `Color`                     | `CupertinoColors.systemGreen`         | Border color on successful scan. |
-| `errorColor`                  | `Color`                     | `CupertinoColors.systemRed`           | Border color on error scan. |
-| `animateOnSuccess`            | `bool`                      | `true`                                 | Whether to animate on successful scan. |
-| `animateOnError`              | `bool`                      | `true`                                 | Whether to animate on failed scan. |
 
 ---
 
@@ -248,10 +251,6 @@ MIT License. See [LICENSE](LICENSE) for details.
 
 <br />
 <code><img height="50" src="https://raw.githubusercontent.com/AyushMaji/amicons/refs/heads/main/assets/others/flaticon.png"></code>
-<code><img height="50" src="https://raw.githubusercontent.com/AyushMaji/amicons/refs/heads/main/assets/others/iconly.jpg"></code>
-<code><img height="50" src="https://raw.githubusercontent.com/AyushMaji/amicons/refs/heads/main/assets/others/lucide.png"></code>
-<code><img height="50" src="https://raw.githubusercontent.com/AyushMaji/amicons/refs/heads/main/assets/others/remix.png"></code>
-<code><img height="50" src="https://raw.githubusercontent.com/AyushMaji/amicons/refs/heads/main/assets/others/vuesax.png"></code>
 <br /><br />
 <br />
 
