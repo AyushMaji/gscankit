@@ -1,4 +1,4 @@
-name: gscanner_kit
+name: gscankit
 description: "Scan QR codes and barcodes via camera or gallery with a lightweight Flutter package."
 version: 0.0.1
 homepage: https://github.com/AyushMaji/

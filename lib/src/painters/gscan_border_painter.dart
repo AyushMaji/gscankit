@@ -1,6 +1,6 @@
 // lib/src/scanner_border_painter.dart
 import 'package:flutter/material.dart';
-import 'package:gscanner_kit/src/overlay/overlay.dart';
+import 'package:gscankit/gscankit.dart';
 
 /// A custom painter for drawing the border of the scan window.
 /// REFACTORED: Merged ScannerBorderPainter and ScannerCornerPainter into one.
