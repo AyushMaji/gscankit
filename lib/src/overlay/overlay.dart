@@ -3,8 +3,8 @@ import 'dart:ui' show ImageFilter;
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:gscan_kit/src/painters/gscan_border_painter.dart';
-import 'package:gscan_kit/src/painters/gscan_line_painter.dart';
+import 'package:gscanner_kit/src/painters/gscan_border_painter.dart';
+import 'package:gscanner_kit/src/painters/gscan_line_painter.dart';
 import 'overlay_clipper.dart';
 
 const _kBorderRadius = 24.0;

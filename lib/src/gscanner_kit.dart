@@ -3,7 +3,7 @@ import 'dart:async' show Timer;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:gscan_kit/src/overlay/overlay.dart';
+import 'package:gscanner_kit/src/overlay/overlay.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:universal_platform/universal_platform.dart';
 import 'widgets/error_builder.dart';
