@@ -1,6 +1,6 @@
 ![Logo](https://github.com/AyushMaji/gscankit/blob/main/assets/gscankit_banner.png?raw=true)
 
-<h1 align="left">GScanKit – Powerful Barcode & QR Code Scanner SDK <a target="_blank" href="https://www.linkedin.com/in/ayushmaji/"></a><img src="https://raw.githubusercontent.com/AyushMaji/amicons/refs/heads/main/assets/amination/Hi.gif" width="30px"></h1></h1>
+<h1 align="left">GScanKit – Barcode & QR Code Scanner <a target="_blank" href="https://www.linkedin.com/in/ayushmaji/"></a><img src="https://raw.githubusercontent.com/AyushMaji/amicons/refs/heads/main/assets/amination/Hi.gif" width="30px"></h1></h1>
 
 GScanKit is an AI-powered Flutter SDK for blazing-fast barcode and QR code scanning.
 It supports fully customizable overlays, Apple-style border animations, and smart scanning from camera or gallery.
@@ -45,6 +45,8 @@ Includes full-screen scanner, animated scan line, and seamless integration — a
 <br/>
 
 ## Platform Support
+GScanKit is designed primarily for mobile and web environments. It fully supports Android and iOS, offering smooth scanning capabilities across devices. Web support is available with limited features based on browser permissions. Desktop platforms like Windows, macOS, and Linux are currently **not supported** due to hardware access limitations.
+
 
 | Android | iOS | macOS | Web |
 | :-----: | :-: | :---: | :-: |
@@ -203,14 +205,78 @@ Customize the visual appearance of the scanner overlay to match your brand or de
 ---
 
 ### Gallery Button Options
+Use the built-in `GalleryButton` to allow users to scan barcodes from gallery images.  
+You can place this widget in your UI freely — AppBar, BottomSheet, or FloatingActionButton — and customize it using the `icon` or `child` parameter as per your design.
 
 ```dart
 GalleryButton(
-  controller: controller, // Pass your MobileScannerController
-  icon: Icon(CupertinoIcons.photo, size: 18), // Custom icon
-  isSuccess: ValueNotifier<bool?>(null), // To handle scan result status
+  controller: controller, // Pass your MobileScannerController instance
+  icon: Icon(CupertinoIcons.photo, size: 18), // Default icon
+  isSuccess: ValueNotifier<bool?>(null), // Tracks scan success or failure
 ),
 ```
+
+🔧 **Custom Styling Example with `child`:**
+```dart
+GalleryButton(
+  controller: controller,
+  isSuccess: ValueNotifier<bool?>(null),
+  child: Container(
+    padding: const EdgeInsets.all(10),
+    decoration: BoxDecoration(
+      color: Colors.black,
+      borderRadius: BorderRadius.circular(8),
+    ),
+    child: Text("Gallery", style: TextStyle(color: Colors.white)),
+  ),
+),
+```
+
+> ✅ `GalleryButton` is fully customizable. Use `child` if you want to provide your own styled widget instead of the default `icon`.
+
+### Switch Camera Example
+
+You can use the `MobileScannerController` to control camera behavior like switching between front and back cameras.  
+Place the toggle icon anywhere in your UI — AppBar, FloatingActionButton, BottomSheet, etc., based on your design needs.
+
+```dart
+final MobileScannerController controller = MobileScannerController(
+  returnImage: true,
+);
+
+IconButton.filled(
+  style: IconButton.styleFrom(
+    backgroundColor: CupertinoColors.systemGrey6,
+    foregroundColor: CupertinoColors.darkBackgroundGray,
+  ),
+  icon: Icon(CupertinoIcons.camera_rotate),
+  onPressed: () => controller.switchCamera(),
+);
+```
+
+
+>Using `controller.switchCamera()` toggles between front and back cameras. This is helpful for scanning QR codes from selfies or switching based on user preference.
+
+### Torch Toggle Button Integration
+
+Use `TorchToggleButton` with `ValueListenableBuilder` to reactively handle flashlight on/off state.  
+You can place this widget anywhere: in the AppBar, BottomSheet, or as a FloatingActionButton.
+
+```dart
+ValueListenableBuilder(
+  valueListenable: controller, // MobileScannerController
+  builder: (context, state, child) {
+    final isTorchOn = state.torchState == TorchState.on;
+    return TorchToggleButton(
+      isTorchOn: isTorchOn,
+      onPressed: () => controller.toggleTorch(),
+    );
+  },
+),
+```
+
+> 💡 `TorchToggleButton` is a customizable widget that changes appearance based on the current torch state.  
+> You can also replace it with your own widget and logic if needed.
 
 ## 🛠 Dependencies
 
@@ -237,9 +303,10 @@ See the [mobile_scanner docs](https://pub.dev/packages/mobile_scanner) for more 
 MIT License. See [LICENSE](LICENSE) for details.
 
 <br />
-<code><img height="50" src="https://github.com/AyushMaji/gscankit/blob/main/assets/flutter_logo.png?raw=true"></code>
 <code><img height="50" src="https://github.com/AyushMaji/gscankit/blob/main/assets/google_logo.png?raw=true"></code>
 <code><img height="50" src="https://github.com/AyushMaji/gscankit/blob/main/assets/logo.png?raw=true"></code>
+<code><img height="50" src="https://github.com/AyushMaji/gscankit/blob/main/assets/dart_logo.png?raw=true"></code>
+<code><img height="50" src="https://github.com/AyushMaji/gscankit/blob/main/assets/flutter_logo.png?raw=true"></code>
 <br /><br />
 <br />
 
