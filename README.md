@@ -30,7 +30,7 @@ Includes full-screen scanner, animated scan line, and seamless integration — a
   <tr>
     <td><img src="https://github.com/AyushMaji/gscankit/blob/main/assets/1.PNG?raw=true" width="100%"/></td>
     <td><img src="https://github.com/AyushMaji/gscankit/blob/main/assets/2.PNG?raw=true" width="100%"/></td>
-    <td><img src="https://github.com/AyushMaji/gscankit/blob/main/assets/3.PNG?raw=true" width="100%"/></td>
+    <td><img src="https://github.com/AyushMaji/gscankit/blob/main/assets/3.png?raw=true" width="100%"/></td>
   </tr>
 </table>
 
