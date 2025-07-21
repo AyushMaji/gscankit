@@ -1,3 +1,7 @@
+## 1.0.1
+
+* Update version and screenshot path in pubspec.yaml.
+
 ## 1.0.0
 
 * Improved section titles, removed unnecessary emojis and horizontal rules, and clarified usage and configuration instructions. Updated overlay styling documentation for better readability and removed redundant icon credits.
