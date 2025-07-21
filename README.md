@@ -237,6 +237,8 @@ See the [mobile_scanner docs](https://pub.dev/packages/mobile_scanner) for more 
 MIT License. See [LICENSE](LICENSE) for details.
 
 <br />
+<code><img height="50" src="https://github.com/AyushMaji/gscankit/blob/main/assets/flutter_logo.png?raw=true"></code>
+<code><img height="50" src="https://github.com/AyushMaji/gscankit/blob/main/assets/google_logo.png?raw=true"></code>
 <code><img height="50" src="https://github.com/AyushMaji/gscankit/blob/main/assets/logo.png?raw=true"></code>
 <br /><br />
 <br />
