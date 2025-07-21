@@ -1,0 +1,36 @@
+name: gscankit
+description: "A new Flutter package project."
+version: 0.0.1
+homepage: https://github.com/AyushMaji/
+repository: https://github.com/AyushMaji/gscankit
+contributors:
+  - name: Ayush Maji
+    email: ayushmaji2001@gmail.com
+    url: http://www.ayushmaji.com/
+
+environment:
+  sdk: ^3.8.1
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  mobile_scanner: ^7.0.1
+  image_picker: ^1.1.2
+  universal_platform: ^1.1.0
+  flutter_animate: ^4.5.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+
+topics:
+  - qr-code-scanner
+  - barcode-scanner
+  - gscankit
+  - camera
+  - gallary
