@@ -81,6 +81,9 @@ class GscanKit extends StatefulWidget {
   )?
   customOverlayBuilder;
 
+  /// A callback function that is called when the widget is initialized.
+  final void Function()? onInitstate;
+
   /// A callback function that is called when the widget is disposed.
   final void Function()? onDispose;
 
@@ -103,6 +106,7 @@ class GscanKit extends StatefulWidget {
     this.scanWindowUpdateThreshold = 0.0,
     this.gscanOverlayConfig = const GscanOverlayConfig(),
     this.customOverlayBuilder,
+    this.onInitstate,
     this.onDispose,
   });
 
@@ -130,6 +134,10 @@ class _GscanKitState extends State<GscanKit> {
     }
     _controller =
         widget.controller ?? MobileScannerController(returnImage: false);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // Call the onInitstate callback if provided.
+      widget.onInitstate?.call();
+    });
   }
 
   @override
@@ -278,32 +286,24 @@ class _GscanKitState extends State<GscanKit> {
 
   /// REFACTORED: Renamed for clarity and improved error handling.
   void _onDetect(BarcodeCapture capture) {
-    // Cancel any existing timer to prevent premature color reset on rapid scans.
     _colorResetTimer?.cancel();
     try {
-      HapticFeedback.lightImpact(); // Always give feedback on scan
-
-      if (widget.validator == null) return;
-
-      final isValid = widget.validator?.call(capture);
-
-      if (isValid == null) return;
+      // If no validator is passed, treat as valid by default
+      final isValid = widget.validator?.call(capture) ?? true;
 
       _isSuccess.value = isValid;
 
       if (isValid) {
-        // Only call the main onDetect if the barcode is valid.
         widget.onDetect?.call(capture);
         HapticFeedback.mediumImpact();
       } else {
-        // Give stronger feedback for an invalid barcode.
         HapticFeedback.heavyImpact();
       }
     } catch (e) {
       _isSuccess.value = false;
       debugPrint('Error during barcode validation: $e');
     }
-    // Start a new timer to reset the color back to normal (null).
+
     _colorResetTimer = Timer(const Duration(milliseconds: 1000), () {
       if (mounted) {
         _isSuccess.value = null;

@@ -1,3 +1,7 @@
+## 1.0.2
+
+* Introduces an onInitstate callback to GscanKit for widget initialization events. Refines overlay background opacity handling for success and error states.
+
 ## 1.0.1
 
 * Update version and screenshot path in pubspec.yaml.

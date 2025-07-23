@@ -179,8 +179,8 @@ class _ScannerOverlayState extends State<ScannerOverlay>
     );
     final backgroundColor = _getColor(
       config.scannerOverlayBackgroundColor,
-      config.successColor.withValues(alpha: 0.2 * 255),
-      config.errorColor.withValues(alpha: 0.2 * 255),
+      config.successColor.withValues(alpha: 0.1),
+      config.errorColor.withValues(alpha: 0.1),
     );
 
     return Stack(

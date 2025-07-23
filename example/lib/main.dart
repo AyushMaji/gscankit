@@ -142,12 +142,14 @@ class _MyHomePageState extends State<MyHomePage> {
                         ],
                         gscanOverlayConfig: GscanOverlayConfig(
                           scannerScanArea: ScannerScanArea.center,
-                          scannerBorder:ScannerBorder.visible ,
-                          scannerBorderPulseEffect: ScannerBorderPulseEffect.enabled,
+                          scannerBorder: ScannerBorder.visible,
+                          scannerBorderPulseEffect:
+                              ScannerBorderPulseEffect.enabled,
                           borderColor: Colors.white,
                           borderRadius: 24.0,
                           scannerLineAnimationColor: Colors.green,
-                          scannerOverlayBackground: ScannerOverlayBackground.blur,
+                          scannerOverlayBackground:
+                              ScannerOverlayBackground.blur,
                           scannerLineAnimation: ScannerLineAnimation.enabled,
                         ),
                       ),
@@ -166,6 +168,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) => GscanKit(
+                        onInitstate: () {},
                         appBar: (context, controller) {
                           return AppBar(
                             title: Text("Gscan"),
@@ -197,7 +200,34 @@ class _MyHomePageState extends State<MyHomePage> {
                           );
                         },
                         controller: controller,
-                        onDetect: (BarcodeCapture capture) {},
+                        onDetect: (BarcodeCapture capture) {
+                          // // write buttom sheet
+                          // showModalBottomSheet(
+                          //   context: context,
+                          //   builder: (context) {
+                          //     return Padding(
+                          //       padding: const EdgeInsets.all(16.0),
+                          //       child: Column(
+                          //         mainAxisSize: MainAxisSize.min,
+                          //         children: [
+                          //           Text(
+                          //             "Detected Barcodes",
+                          //             style: TextStyle(fontSize: 20),
+                          //           ),
+                          //           SizedBox(height: 10),
+                          //           ...capture.barcodes.map((barcode) {
+                          //             return ListTile(
+                          //               title: Text(
+                          //                 barcode.rawValue ?? "Unknown",
+                          //               ),
+                          //             );
+                          //           }).toList(),
+                          //         ],
+                          //       ),
+                          //     );
+                          //   },
+                          // );
+                        },
                         floatingOption: [
                           GalleryButton(
                             controller: controller,
