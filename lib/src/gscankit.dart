@@ -133,7 +133,7 @@ class _GscanKitState extends State<GscanKit> {
       ]);
     }
     _controller =
-        widget.controller ?? MobileScannerController(returnImage: false);
+        widget.controller ?? MobileScannerController(returnImage: true);
     WidgetsBinding.instance.addPostFrameCallback((_) {
       // Call the onInitstate callback if provided.
       widget.onInitstate?.call();

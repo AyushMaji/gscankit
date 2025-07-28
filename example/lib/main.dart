@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gscankit/gscankit.dart';
@@ -29,6 +30,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  bool isBottomSheetOpen = false;
   MobileScannerController controller = MobileScannerController(
     returnImage: true,
   );
@@ -201,32 +203,48 @@ class _MyHomePageState extends State<MyHomePage> {
                         },
                         controller: controller,
                         onDetect: (BarcodeCapture capture) {
+                          if (isBottomSheetOpen) return;
+                          if (capture.barcodes == []) return;
+                          isBottomSheetOpen = true;
+                          setState(() {});
+                          try {
+                            parseBarcodeFromCapture(capture).then((file) {
+                              showModalBottomSheet(
+                                context: context,
+                                builder: (context) {
+                                  return Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Text(
+                                          "Detected Barcodes",
+                                          style: TextStyle(fontSize: 20),
+                                        ),
+                                        SizedBox(height: 10),
+                                        ...capture.barcodes.map((barcode) {
+                                          return ListTile(
+                                            title: Text(
+                                              file!["type"] ?? "Unknown",
+                                            ),
+                                            subtitle: Text(
+                                              file!["value"] ?? "Unknown",
+                                            ),
+                                          );
+                                        }).toList(),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              );
+                              isBottomSheetOpen = false;
+                              setState(() {});
+                            });
+                          } catch (e) {
+                            log('');
+                          }
+                          setState(() {});
                           // // write buttom sheet
-                          // showModalBottomSheet(
-                          //   context: context,
-                          //   builder: (context) {
-                          //     return Padding(
-                          //       padding: const EdgeInsets.all(16.0),
-                          //       child: Column(
-                          //         mainAxisSize: MainAxisSize.min,
-                          //         children: [
-                          //           Text(
-                          //             "Detected Barcodes",
-                          //             style: TextStyle(fontSize: 20),
-                          //           ),
-                          //           SizedBox(height: 10),
-                          //           ...capture.barcodes.map((barcode) {
-                          //             return ListTile(
-                          //               title: Text(
-                          //                 barcode.rawValue ?? "Unknown",
-                          //               ),
-                          //             );
-                          //           }).toList(),
-                          //         ],
-                          //       ),
-                          //     );
-                          //   },
-                          // );
                         },
                         floatingOption: [
                           GalleryButton(
