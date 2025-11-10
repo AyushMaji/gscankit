@@ -172,7 +172,9 @@ class _MyHomePageState extends State<MyHomePage> {
                         appBar: (context, controller) {
                           return AppBar(
                             title: Text("Gscan"),
-                            leading: Icon(Icons.arrow_back_ios),
+                            leading: InkWell(
+                              onTap: () => Navigator.of(context).pop(),
+                              child: Icon(Icons.arrow_back_ios)),
                             backgroundColor: Colors.transparent,
                             actions: [
                               IconButton.filled(

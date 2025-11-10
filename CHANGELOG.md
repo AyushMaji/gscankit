@@ -1,3 +1,7 @@
+## 1.0.3
+
+* Improved the back button in the example app for proper navigation. 
+
 ## 1.0.2
 
 * Introduces an onInitstate callback to GscanKit for widget initialization events. Refines overlay background opacity handling for success and error states.
